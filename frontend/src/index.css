@@ -1,0 +1,27 @@
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  cursor: none;
+}
+@media (max-width: 768px), (pointer: coarse) {
+  html, body, #root { cursor: auto; }
+}
+
+.cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 6px; height: 6px; background: #FF8FB1;
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(181,126,220,0.55);
+  border-radius: 50%; pointer-events: none; z-index: 9998;
+  transition: width 0.25s, height 0.25s, border-color 0.25s, background-color 0.25s;
+}
+.cursor-ring.hovering {
+  width: 64px; height: 64px;
+  background-color: rgba(181,126,220,0.12);
+  border-color: rgba(255,143,177,0.85);
+}
