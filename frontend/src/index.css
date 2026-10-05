@@ -1,27 +1,75 @@
-html, body, #root {
-  height: 100%;
-  overflow: hidden;
-  cursor: none;
-}
-@media (max-width: 768px), (pointer: coarse) {
-  html, body, #root { cursor: auto; }
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 6px; height: 6px; background: #FF8FB1;
-  border-radius: 50%; pointer-events: none; z-index: 9999;
-  mix-blend-mode: difference;
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #b57edc 40%, #ff8fb1 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shine 6s ease infinite;
 }
-.cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(181,126,220,0.55);
-  border-radius: 50%; pointer-events: none; z-index: 9998;
-  transition: width 0.25s, height 0.25s, border-color 0.25s, background-color 0.25s;
+@keyframes text-shine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
-.cursor-ring.hovering {
-  width: 64px; height: 64px;
-  background-color: rgba(181,126,220,0.12);
-  border-color: rgba(255,143,177,0.85);
+
+.btn-cinema {
+  position: relative;
+  background: linear-gradient(135deg, #b57edc 0%, #ff8fb1 100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-cinema:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(181, 126, 220, 0.7),
+    0 0 60px rgba(255, 143, 177, 0.4);
+}
+
+.input-cinema {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.input-cinema:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(181, 126, 220, 0.6);
+  box-shadow: 0 0 0 4px rgba(181, 126, 220, 0.1),
+    0 0 20px rgba(181, 126, 220, 0.2);
+  outline: none;
+}
+
+.shimmer-border {
+  position: relative;
+}
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(181, 126, 220, 0.6), rgba(255, 143, 177, 0.6), rgba(181, 126, 220, 0.6));
+  background-size: 200% 200%;
+  animation: shimmer 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
