@@ -43,7 +43,6 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // ---------- 3D TILT ----------
   const cardRef = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -86,7 +85,6 @@ export default function Login() {
     my.set(0);
   };
 
-  // ---------- SUBMIT ----------
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -143,12 +141,11 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="relative h-screen w-screen flex items-center justify-center overflow-hidden noise">
+    <div className="relative h-screen w-screen flex items-center justify-center overflow-hidden noise px-4">
       <div className="aurora-bg" />
       <ParticleField />
       <CinematicCursor />
 
-      {/* Floating hearts */}
       {[...Array(7)].map((_, i) => (
         <motion.div
           key={i}
@@ -166,7 +163,6 @@ export default function Login() {
         </motion.div>
       ))}
 
-      {/* Card */}
       <motion.div
         ref={cardRef}
         onMouseMove={onMouseMove}
@@ -180,14 +176,14 @@ export default function Login() {
         initial={{ opacity: 0, y: 60, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-md mx-4"
+        className="relative z-10 w-full max-w-md"
       >
         <motion.div
           style={{ backgroundImage: bgGlow }}
           className="absolute -inset-8 rounded-[3rem] pointer-events-none blur-2xl"
         />
 
-        <div className="shimmer-border glass-strong rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+        <div className="shimmer-border glass-strong rounded-3xl p-6 sm:p-10 relative overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/30 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -200,7 +196,7 @@ export default function Login() {
           >
             <motion.div
               variants={itemVariants}
-              className="flex justify-center mb-8"
+              className="flex justify-center mb-6 sm:mb-8"
               style={{ transform: "translateZ(40px)" }}
             >
               <div className="relative">
@@ -212,16 +208,16 @@ export default function Login() {
                 <motion.div
                   whileHover={{ rotate: 12, scale: 1.08 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative bg-gradient-to-br from-primary via-accent to-primary p-4 rounded-2xl shadow-glow"
+                  className="relative bg-gradient-to-br from-primary via-accent to-primary p-3.5 sm:p-4 rounded-2xl shadow-glow"
                 >
-                  <Lock className="w-8 h-8 text-white" strokeWidth={2.5} />
+                  <Lock className="w-7 h-7 sm:w-8 sm:h-8 text-white" strokeWidth={2.5} />
                 </motion.div>
               </div>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl font-black text-center text-gradient tracking-tight mb-3"
+              className="text-3xl sm:text-5xl font-black text-center text-gradient tracking-tight mb-2 sm:mb-3"
               style={{ transform: "translateZ(30px)" }}
             >
               Private Space
@@ -229,7 +225,7 @@ export default function Login() {
 
             <motion.p
               variants={itemVariants}
-              className="text-center text-soft/50 text-sm mb-10 flex items-center justify-center gap-2 font-medium"
+              className="text-center text-soft/50 text-xs sm:text-sm mb-6 sm:mb-10 flex items-center justify-center gap-2 font-medium"
             >
               <Sparkles size={14} className="text-accent" />
               For favorite people only
@@ -237,14 +233,14 @@ export default function Login() {
 
             <motion.div
               variants={itemVariants}
-              className="relative flex gap-1 p-1.5 bg-white/[0.03] border border-white/[0.06] rounded-2xl mb-8"
+              className="relative flex gap-1 p-1.5 bg-white/[0.03] border border-white/[0.06] rounded-2xl mb-6 sm:mb-8"
             >
               {(["login", "register"] as const).map((m) => (
                 <button
                   key={m}
                   type="button"
                   onClick={() => setMode(m)}
-                  className="relative flex-1 py-2.5 text-sm font-semibold rounded-xl z-10 transition-colors duration-300"
+                  className="relative flex-1 py-2.5 text-xs sm:text-sm font-semibold rounded-xl z-10 transition-colors duration-300"
                 >
                   {mode === m && (
                     <motion.div

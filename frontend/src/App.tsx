@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import CinematicCursor from "./components/CinematicCursor";
-import ParticleField from "./components/ParticleField";
+import Ambient3D from "./components/Ambient3D";
 
 function Protected({ children }: { children: React.ReactElement }) {
   const { user } = useAuth();
@@ -31,7 +31,7 @@ function AppRoutes() {
           </Protected>
         }
       />
-      <Route path="*" element={<Navigate to="/chat" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }
@@ -40,13 +40,10 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="relative h-screen w-screen">
-          <div className="aurora-bg" />
-          <ParticleField />
-          <CinematicCursor />
-          <div className="relative z-10 h-full">
-            <AppRoutes />
-          </div>
+        <Ambient3D />
+        <CinematicCursor />
+        <div className="relative z-10 h-screen w-screen">
+          <AppRoutes />
         </div>
       </BrowserRouter>
     </AuthProvider>
