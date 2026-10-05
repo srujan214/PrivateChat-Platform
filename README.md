@@ -79,7 +79,7 @@ Install **Docker Desktop** once → [docker.com/products/docker-desktop](https:/
 docker compose up -d
 ```
 
-Then open 👉 **http://localhost80**
+Then open 👉 **http://localhost**
 
 > ⏱ First run: **5–10 minutes** (downloads ~500 MB of dependencies).
 > Every run after: **~20 seconds**.
@@ -163,7 +163,7 @@ cloudflared --version
 With Docker running, open a **new terminal**:
 
 ```bash
-cloudflared tunnel --url http://localhost80
+cloudflared tunnel --url http://localhost
 ```
 
 You'll get:
